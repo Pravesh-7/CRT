@@ -51,3 +51,51 @@ public:
     }
 };
 
+148: sort  list
+class Solution {
+public:
+    ListNode*  mergeTwoLists(ListNode* head1, ListNode* head2){
+      if(head1 == NULL || head2 == NULL){
+        return head1== NULL?head2:head1;
+      }
+      if(head1->val <= head2->val){
+       head1->next = mergeTwoLists(head1->next, head2);
+       return head1;
+      }
+       else{
+        head2->next = mergeTwoLists(head1, head2->next);
+        return head2;
+      }
+     return NULL;
+    }
+
+    ListNode* middleNode(ListNode* head){
+       ListNode* slow = head;
+       ListNode* fast = head->next;
+
+       while(fast != NULL &&  fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+       }
+       return slow;
+    }
+
+    ListNode* mergeSort(ListNode* head){
+      if(head == NULL || head->next == NULL)
+      return head;
+
+      ListNode* mid = middleNode(head);
+      ListNode* head2 = mid->next;
+      mid->next = NULL;
+        head = mergeSort(head);
+        head2 = mergeSort(head2);
+
+       head = mergeTwoLists(head, head2);
+       return head;
+    }
+
+    ListNode* sortList(ListNode* head) {
+       return mergeSort(head);
+    }
+};
+
