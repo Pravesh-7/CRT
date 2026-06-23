@@ -1,0 +1,27 @@
+82:Remove duplicates from LL
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head == NULL ||  head->next==NULL) return head;
+       ListNode* prev= NULL;  
+       ListNode* curr = head;
+
+       while(curr!=NULL){
+        ListNode* nxt = curr->next;
+          bool flag = false;
+        while(nxt != NULL && curr->val == nxt->val){
+            flag = true;
+            nxt = nxt->next;
+        }
+        if(flag == true){
+            if(prev == NULL) head=nxt;
+            else prev->next = nxt;
+        }
+        else{
+            prev = curr;
+        }
+        curr = nxt;
+       }
+       return head;
+    }
+};
