@@ -25,6 +25,7 @@ public:
        return head;
     }
 };
+___________________________________________
 
 2: Add two numbers
 class Solution {
@@ -53,6 +54,8 @@ public:
        return dummy.next;
     }
 };
+
+_________________________________________________
 
 445:Add two numbers ||
 class Solution {
@@ -96,6 +99,8 @@ public:
     }
 };
 
+______________________________________________________
+
 160: Intersection of two LLs
 class Solution {
 public:
@@ -116,6 +121,8 @@ public:
 
     }
 };
+
+______________________________________________________
 
 23: Merge K sorted lists
 class Solution {
