@@ -1,0 +1,33 @@
+234:Palindrome LL
+class Solution {
+public:
+    
+    ListNode* midNode(ListNode* head){
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast!= NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
+    }
+
+    bool isPalindrome(ListNode* head) {
+       stack<ListNode*>s;
+       ListNode* mid = midNode(head);
+
+       while(mid != NULL){
+            s.push(mid);
+            mid = mid->next;
+       }
+       while(!s.empty()){
+            if(s.top()->val != head->val){
+                return false;
+            } 
+            head= head->next;
+            s.pop();
+           
+        }
+     return true;
+    }
+};
