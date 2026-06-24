@@ -26,6 +26,61 @@ public:
             } 
             head= head->next;
             s.pop();
+
+143:Reorder List
+class Solution {
+public:
+     ListNode* midNode(ListNode* head){
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast->next!= NULL && fast->next->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
+    }
+ 
+    ListNode* reverseList(ListNode* head){
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        ListNode* next = NULL;
+        while(curr != NULL){
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    void mergeLists(ListNode* first, ListNode* second){
+        while(second) {
+
+        ListNode* next1 = first->next;
+        ListNode* next2 = second->next;
+
+        first->next = second;
+        second->next = next1;
+
+        first = next1;
+        second = next2;
+    }
+    }
+
+    void reorderList(ListNode* head) {
+        if(head == NULL || head->next==NULL) return;
+
+       ListNode* mid = midNode(head);
+        //split into two lists
+       ListNode* second = mid->next;
+       mid->next = NULL;
+
+       second = reverseList(second);
+
+       mergeLists(head, second);
+
+    }
+};
            
         }
      return true;
