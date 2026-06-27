@@ -21,3 +21,32 @@ public:
 
     }
 };
+
+109: sorted list to  BST
+class Solution {
+public:
+     TreeNode* createTree(vector<int>& vec, int st, int end){
+        if(st>end) return NULL;
+        int mid = st+(end-st)/2;
+
+        TreeNode* root = new TreeNode(vec[mid]);
+
+        root->left = createTree(vec, st, mid-1);
+        root->right = createTree(vec, mid+1, end);
+
+        return root;
+    } 
+
+    TreeNode* sortedListToBST(ListNode* head) {
+     ListNode* temp = head;
+     vector<int>vec;
+
+     while(temp != NULL){
+        vec.push_back(temp->val);
+        temp = temp->next;
+     } 
+
+     return createTree(vec, 0, vec.size()-1);
+
+    }
+};
