@@ -79,5 +79,28 @@ public:
     }
 };
 
+//////////////////////
+797: All paths from source
+class Solution {
+public:
+   void dfs(vector<vector<int>>& graph, int curr, int dest, vector<int>& temp,  vector<vector<int>>& ans){
+        temp.push_back(curr);
+        if(curr == dest) ans.push_back(temp);
+        else{
+            for(int i=0; i<graph[curr].size(); i++){
+                dfs(graph, graph[curr][i], dest, temp, ans);
+            }
+        }
+        temp.pop_back();
+        return;
+   }
 
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        int n=graph.size();
+
+        dfs(graph, 0, n-1, temp, ans);
+        return ans;
+    }
 };
