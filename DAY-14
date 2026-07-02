@@ -12,6 +12,7 @@ public:
     }
 };
 /////////////////////////////////
+RECURSION
 22: generate parentheses
 class Solution {
 public:
@@ -37,3 +38,48 @@ public:
         return ans;
     }
 };
+///////////////////////////////
+78:subsets
+class Solution {
+public:
+
+  void printSubsets(vector<int>& nums,vector<int>& ans , int i,vector<vector<int>>& result){
+    if(i==nums.size()) {
+        result.push_back(ans);
+        return;
+
+    }
+    cout<<endl;
+
+    //include
+    ans.push_back(nums[i]);
+    printSubsets(nums,ans,i+1,result);
+
+    
+    ans.pop_back(); //backtrack
+    //exclude
+    printSubsets(nums,ans,i+1,result);
+  }
+
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>result;
+        vector<int>ans;
+        int i=0;
+        printSubsets(nums,ans,i,result);
+        return result;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
